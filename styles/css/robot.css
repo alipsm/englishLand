@@ -1,0 +1,6 @@
+
+
+.ease-in-out_rotate20deg-animation{
+    animation: rotate_head ease-in-out 5000ms infinite alternate;
+    
+}

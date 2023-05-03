@@ -1,0 +1,93 @@
+@keyframes rotate_head {
+  from {
+    rotate: 5deg;
+    /* opacity: .5; */
+  }
+  to {
+    rotate: -5deg;
+    /* opacity: 1; */
+  }
+}
+
+@keyframes animation_xy-10px {
+  from {
+    transform: translate(10px, 10px);
+  }
+  to {
+    transform: translate(-10px, -10px);
+  }
+}
+
+@keyframes animation_x-10px {
+  from {
+    transform: translateX(10px);
+
+    /* transform:translate(10px); */
+  }
+  to {
+    transform: translateX(-10px);
+
+    /* transform:translate(-0px) */
+  }
+}
+
+@keyframes animation_y-10px {
+  from {
+    transform: translateY(10px);
+
+    /* transform:translate(10px); */
+  }
+  to {
+    transform: translateY(-10px);
+
+    /* transform:translate(-0px) */
+  }
+}
+
+@keyframes animation_opacity-6 {
+  from {
+    opacity: 1;
+
+    /* transform:translate(10px); */
+  }
+  to {
+    opacity: 0;
+
+
+    /* transform:translate(-0px) */
+  }
+}
+
+@keyframes button_background-light-animation {
+  0% {
+    left: 4%;
+    top: 8%;
+    box-shadow:#16FF00 -10px -10px 15px;
+
+  }
+  25% {
+    left: 4%;
+    top: 62%;
+    box-shadow:#16FF00 -10px 10px 15px;
+
+  }
+  50% {
+    left: 82%;
+    top: 62%;
+    box-shadow:#16FF00 10px 10px 15px;
+
+  }
+  75% {
+    left: 82%;
+    top: 8%;
+    box-shadow:#16FF00 10px -10px 15px;
+
+  }
+  100% {
+    left: 4%;
+    top: 8%;
+    box-shadow:#16FF00 -10px -10px 15px;
+
+  }
+}
+/* animation: button_background-light-animation linear 4s infinite; */

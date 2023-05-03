@@ -1,0 +1,155 @@
+@import url(./animation.css);
+
+$black:#171717;
+$infoShortTextColor:#86A3B8;
+
+@function setAnimation($mood, $speed) {
+    $animation_xy-10px: animation_xy-10px ease-in-out $speed infinite alternate;
+    $animation_x-10px: animation_x-10px ease-in-out $speed infinite alternate;
+    $animation_y-10px: animation_y-10px ease-in-out $speed infinite alternate;
+    $animation_rotate_10deg: rotate_head ease-in-out $speed infinite alternate;
+    $animation_opacity-6: rotate_head ease-in-out $speed infinite alternate;
+
+  $icons: (
+    "rotate_10deg": $animation_rotate_10deg,
+    "opacity-6": $animation_opacity-6,
+    "xy-10px": $animation_xy-10px,
+    "x-10px": $animation_x-10px,
+    "y-10px": $animation_y-10px,
+
+  );
+
+
+  $result: "";
+
+
+  @each $name, $glyph in $icons {
+    @if ($name==$mood) {
+      @return $glyph;
+    }
+  }
+  @return $result;
+}
+
+*{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+input{
+  color: $infoShortTextColor;
+}
+
+.navBar {
+  display: flex;
+  position: relative;
+  .logo {
+    .text {
+      font-family: Cups;
+      font-size: 30px;
+      user-select: none;
+    }
+  }
+  .sections {
+    width: 25%;
+    ul {
+      display: flex;
+      justify-content: space-between;
+
+      a {
+        color: #424242;
+        transition: all 0.5s linear 0s;
+        cursor: pointer;
+        &:hover {
+          text-underline-offset: 8px;
+          text-decoration-line: underline;
+          text-decoration-color: #3563e9;
+          color: #3563e9;
+        }
+      }
+      .active {
+        text-underline-offset: 8px;
+        text-decoration-line: underline;
+        text-decoration-color: #3563e9;
+        color: #3563e9;
+      }
+    }
+  }
+}
+
+.robot {
+  .head {
+    &-animation {
+      &_10deg {
+        animation: setAnimation("rotate_10deg",6s );
+      }
+      &_opacity-6 {
+        animation: setAnimation("opacity-6",2s );
+      }
+    }
+  }
+  .body {
+    
+ 
+    
+    z-index: 10;
+    &-animation {
+      &_x-10px {
+        animation: setAnimation("xy-10px",7s );
+      }
+    }
+  }
+}
+
+.details {
+  &-animation {
+    &_xy-10px {
+      animation: setAnimation("xy-10px",6500ms );
+    }
+  }
+  &-animation {
+    &_x-10px {
+      animation: setAnimation("x-10px",7s );
+    }
+  }
+  &-animation {
+    &_x-10px-1s {
+      animation: setAnimation("x-10px",1s );
+    }
+  }
+  &-animation {
+    &_y-10px {
+      animation: setAnimation("y-10px",7s );
+    }
+  }
+}
+
+
+.info_parent{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-start;
+  font-size: 15px;
+  font-family: HeyComic;
+  padding: 0px 7%;
+  h1{
+    font-size:3em;
+    text-overflow: ellipsis;
+    color: $black;
+  }
+  h2{
+    padding-bottom: 2em;
+    color: $black;
+  }
+  p{
+    font-family: sans-serif;
+    color: $infoShortTextColor;
+    font-size: 1.2em;
+  }
+
+}

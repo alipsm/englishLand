@@ -1,0 +1,14 @@
+@font-face {
+    font-family:Cups;
+    src: url(../fonts/BobaCups.ttf);
+  }
+
+  @font-face {
+    font-family:HeyComic;
+    src: url(../fonts/hey_comic/Hey\ Comic.ttf);
+  }
+
+  @font-face {
+    font-family:IranYekan;
+    src: url(../fonts/iranYekan/IRANYekanRegular.ttf);
+  }
