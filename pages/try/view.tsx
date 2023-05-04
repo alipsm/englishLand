@@ -11,7 +11,12 @@ export default function Index({
   }, //animations
   tryingToFindTranslateWord = () => {}, // checking correct translation
   nextLanguageCard = () => {}, // get new english
-  languageCardData , // card data {word,persianMeanings,examples}
+  languageCardData={
+    word:"" as string,
+    persianMeanings:[] as string[],
+    examples:[] as string[]|undefined,
+    trying:4 as number
+  } , // card data {word,persianMeanings,examples}
 }) {
   const [showingExample, setShowingExample] = useState(() => false);
   const inputRef = useRef(null);
@@ -24,6 +29,8 @@ export default function Index({
     console.log("inputRef", inputRef);
   }, [inputRef.current]);
 
+
+  console.log('languageCardData :>> ', languageCardData);
   return (
     <div className="flex flex-row-reverse justify-around items-center w-full h-full">
       <div className="robot relative w-2/5 ">
@@ -81,8 +88,8 @@ export default function Index({
           <hr />
 
           <div className="h-[20%] overflow-y-auto">
-            {languageCardData.examples.length != 0 && showingExample ? (
-              languageCardData.examples.map((example: string) => (
+            {languageCardData.examples?.length != 0 && showingExample ? (
+              languageCardData.examples?.map((example: string) => (
                 <p className="examples animate__animated animate__fadeIn">
                   {example}
                 </p>
@@ -96,10 +103,20 @@ export default function Index({
                   baseColor={"rgba(148,187,233,.2)"}
                   highlightColor={"rgba(148,187,233,.1)"}
                   className="   cursor-pointer "
-                  count={languageCardData.examples.length}
+                  count={languageCardData.examples?.length}
                 />
               </div>
             )}
+          </div>
+
+          {/* trying cout */}
+          <div className="tringCount">
+            <ul>
+              {Array.from(Array(4),(e,i)=>{
+                return <li className={`${languageCardData.trying>i?"bg-[#59CE8F]":"bg-[#F96666]"}`}>{e}</li>
+              })
+              }
+            </ul>
           </div>
 
           <div className="absolute -right-[10%] details-animation_x-10px-1s h-[10%]">

@@ -70,12 +70,20 @@ export default function index() {
                 wordExpampleBase(key)?.definitionExamples[0].example
             ),
           ].filter(Boolean),
+          trying:4
         });
       })
       .catch((error) => {
         error.code=="ERR_NETWORK"&&setLanguageCardData(undefined);
         console.log('error :>> ', error);
       });
+  }
+
+  function handleTringCount(params:boolean) {
+    if (!params&&languageCardData?.trying!=undefined) {
+      // languageCardData.trying--
+      setLanguageCardData({...languageCardData,trying:languageCardData.trying-1})
+    }    
   }
 
   function tryingToFindTranslateWord(translate: string) {
@@ -112,6 +120,7 @@ export default function index() {
         }
       }
     });
+    handleTringCount(checkingSuccessProcessing)
     return checkingSuccessProcessing;
   }
 

@@ -70,4 +70,28 @@ $infoShortTextColor:#86A3B8;
         padding:.2em .5em;
     }
   }
+
+  .tringCount{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    ul{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      li{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        // background-color: #59CE8F;  // green
+        // background-color: #F96666; // red
+        // background-color: #FABC60; //yellow
+
+
+        border-radius: 50%;
+        margin: 3px;
+      }
+    }
+  }
 }
