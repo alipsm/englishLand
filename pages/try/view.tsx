@@ -8,34 +8,43 @@ export default function Index({
     card: "" as string,
     arrow: "" as string,
     button: "" as string,
-    trying:"" as string
+    trying: "" as string,
   }, //animations
   tryingToFindTranslateWord = () => {}, // checking correct translation
   nextLanguageCard = () => {}, // get new english
-  languageCardData={
-    word:"" as string,
-    persianMeanings:[] as string[],
-    examples:[] as string[]|undefined,
-    trying:4 as number,
-    finishGame:false as boolean
-  }
+  languageCardData = {
+    word: "" as string,
+    persianMeanings: [] as string[],
+    examples: [] as string[] | undefined,
+    trying: 4 as number,
+    finishGame: { end: false as boolean, win: false as boolean },
+  },
 }) {
-
   const [showingExample, setShowingExample] = useState(() => false);
   const inputRef = useRef(null);
 
   useEffect(() => {
     setShowingExample(false);
+    if (inputRef.current != null) {
+      // @ts-ignore
+      inputRef.current.value = "";
+      // @ts-ignore
+      inputRef.current.focus();
+    }
   }, [languageCardData.word]);
 
   useEffect(() => {
     console.log("inputRef", inputRef);
   }, [inputRef.current]);
 
+  console.log(
+    "languageCardData.finishGame.end :>> ",
+    languageCardData.finishGame.end
+  );
+
   return (
     <div className="flex flex-row-reverse justify-around items-center w-full h-full">
       <div className="robot relative w-2/5 ">
-
         <Image
           fill
           src={ImageContainer.details_black_cube.img}
@@ -62,87 +71,114 @@ export default function Index({
         />
       </div>
       <div className="flex justify-center items-center w-3/5 h-full">
-        <div
+        <form
           id="languageCord"
+          onSubmit={e=>e.preventDefault()}
+          // onSubmit={()=>tryingToFindTranslateWord(
+          //   /* @ts-ignore */
+          //   inputRef.current && inputRef.current.value
+          // )}
           className={`animate__animated ${languageCardAnimation.card}`}>
-          <div className=" h-[30%]">
-            <p className="word">{languageCardData.word}</p>
-            <div>
-              <input
-                type="text"
-                name="inputTranslate"
-                id=""
-                placeholder="translate"
-                ref={inputRef}
+          <div
+            className={`parentCard animate__animated ${
+              languageCardData.finishGame.end
+                ? languageCardData.finishGame.win
+                  ? "animate__fadeIn win"
+                  : "animate__fadeIn los"
+                : ""
+            } `}>
+            <div className=" h-[30%]">
+              <p className="word">{languageCardData.word}</p>
+              <div>
+                <input
+                  type="text"
+                  name="inputTranslate"
+                  id=""
+                  placeholder="translate"
+                  ref={inputRef}
+                />
+                <label htmlFor="inputTranslate"></label>
+              </div>
+            </div>
+            <div className="h-[50%] overflow-y-auto">
+              <p className="meanings fle x pr-3 justify-evenly">
+                {languageCardData.finishGame.end &&
+                  languageCardData.persianMeanings.map((meaning: string) => (
+                    <span> {meaning} </span>
+                  ))}
+              </p>
+            </div>
+
+            <hr />
+
+            <div className="h-[20%] overflow-y-auto">
+              {languageCardData.finishGame.end ||
+              (languageCardData.examples?.length != 0 && showingExample) ? (
+                languageCardData.examples?.map((example: string) => (
+                  <p className="examples animate__animated animate__fadeIn">
+                    {example}
+                  </p>
+                ))
+              ) : (
+                <div onClick={() => setShowingExample(true)}>
+                  <Skeleton
+                    width={"100%"}
+                    height={"100%"}
+                    containerClassName={""}
+                    baseColor={"rgba(148,187,233,.2)"}
+                    highlightColor={"rgba(148,187,233,.1)"}
+                    className="   cursor-pointer "
+                    count={languageCardData.examples?.length}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* trying cout */}
+            <div className="tringCount">
+              <ul>
+                {Array.from(Array(4), (e, i) => {
+                  return (
+                    <li
+                      className={`${
+                        languageCardData.trying > i
+                          ? "bg-[#59CE8F]"
+                          : "bg-[#F96666]"
+                      } animate__animated ${
+                        languageCardAnimation.trying
+                      } animate__delay-1s`}>
+                      {e}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <div className="absolute -right-[10%] details-animation_x-10px-1s h-[10%]">
+              <img
+                src={ImageContainer.arrow.img}
+                alt={ImageContainer.arrow.alt}
+                onClick={() => nextLanguageCard()}
+                className={`h-full  cursor-pointer animate__animated ${languageCardAnimation.arrow}   animate__delay-1s`}
               />
-              <label htmlFor="inputTranslate"></label>
+            </div>
+
+            <div
+              className={`button-container absolute w-full text-center -bottom-14 left-0 animate__animated ${languageCardAnimation.button} animate__delay-1s`}>
+              <button
+              type="submit"
+                className="  m-auto "
+                onClick={() => {
+                  tryingToFindTranslateWord(
+                    /* @ts-ignore */
+                    inputRef.current && inputRef.current.value
+                  );
+                }}>
+                CHECK
+              </button>
             </div>
           </div>
-          <div className="h-[50%] overflow-y-auto">
-            <p className="meanings fle x pr-3 justify-evenly">
-              {languageCardData.persianMeanings.map((meaning: string) => (
-                <span> {meaning} </span>
-              ))}
-            </p>
-          </div>
-
-          <hr />
-
-          <div className="h-[20%] overflow-y-auto">
-            {languageCardData.examples?.length != 0 && showingExample ? (
-              languageCardData.examples?.map((example: string) => (
-                <p className="examples animate__animated animate__fadeIn">
-                  {example}
-                </p>
-              ))
-            ) : (
-              <div onClick={() => setShowingExample(true)}>
-                <Skeleton
-                  width={"100%"}
-                  height={"100%"}
-                  containerClassName={""}
-                  baseColor={"rgba(148,187,233,.2)"}
-                  highlightColor={"rgba(148,187,233,.1)"}
-                  className="   cursor-pointer "
-                  count={languageCardData.examples?.length}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* trying cout */}
-          <div className="tringCount">
-            <ul>
-              {Array.from(Array(4),(e,i)=>{
-                return <li className={`${languageCardData.trying>i?"bg-[#59CE8F]":"bg-[#F96666]"} animate__animated ${languageCardAnimation.trying} animate__delay-1s`}>{e}</li>
-              })
-              }
-            </ul>
-          </div>
-
-          <div className="absolute -right-[10%] details-animation_x-10px-1s h-[10%]">
-            <img
-              src={ImageContainer.arrow.img}
-              alt={ImageContainer.arrow.alt}
-              onClick={() => nextLanguageCard()}
-              className={`h-full  cursor-pointer animate__animated ${languageCardAnimation.arrow}   animate__delay-1s`}
-            />
-          </div>
-
-          <div
-            className={`button-container absolute w-full text-center -bottom-14 left-0 animate__animated ${languageCardAnimation.button} animate__delay-1s`}>
-            <button
-              className="  m-auto "
-              onClick={() => {
-                tryingToFindTranslateWord(
-                  /* @ts-ignore */
-                  inputRef.current && inputRef.current.value
-                );
-              }}>
-              CHECK
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );

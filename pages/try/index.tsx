@@ -74,7 +74,7 @@ export default function index() {
             ),
           ].filter(Boolean),
           trying:4,
-          finishGame:false
+          finishGame:{end:false,win:false}
         });
       })
       .catch((error) => {
@@ -84,10 +84,16 @@ export default function index() {
   }
 
   function handleTringCount(params:boolean) {
-    if (!params&&languageCardData?.trying!=undefined) {
-      let limit=languageCardData.trying-1
-      setLanguageCardData({...languageCardData,trying:limit,finishGame:limit<0})
-    }    
+    let cardData;
+    if (languageCardData?.trying!=undefined) {
+      if (!params) {
+        let limit=languageCardData.trying-1
+        cardData={...languageCardData,trying:limit,finishGame:{end:limit<=0,win:false}}
+      }else if (params) {
+        cardData={...languageCardData,finishGame:{end:true,win:true}}
+      }
+      setLanguageCardData(cardData)
+    }
   }
 
   function tryingToFindTranslateWord(translate: string) {
