@@ -14,6 +14,7 @@ export default function index() {
     card: "animate__zoomInDown",
     arrow: "animate__fadeInLeft",
     button: "animate__fadeInDown",
+    trying:"animate__flash"
   });
 
   // english word state
@@ -28,6 +29,7 @@ export default function index() {
       arrow: "",
       button: "",
       card: "animate__zoomOutRight",
+      trying:""
     });
     setTimeout(() => {
       getNewEnglishWord();
@@ -35,6 +37,7 @@ export default function index() {
         arrow: "animate__fadeInLeft",
         button: "animate__fadeInDown ",
         card: "animate__zoomInDown",
+        trying:"animate__flash"
       });
     }, 700);
   }
@@ -70,7 +73,8 @@ export default function index() {
                 wordExpampleBase(key)?.definitionExamples[0].example
             ),
           ].filter(Boolean),
-          trying:4
+          trying:4,
+          finishGame:false
         });
       })
       .catch((error) => {
@@ -81,8 +85,8 @@ export default function index() {
 
   function handleTringCount(params:boolean) {
     if (!params&&languageCardData?.trying!=undefined) {
-      // languageCardData.trying--
-      setLanguageCardData({...languageCardData,trying:languageCardData.trying-1})
+      let limit=languageCardData.trying-1
+      setLanguageCardData({...languageCardData,trying:limit,finishGame:limit<0})
     }    
   }
 

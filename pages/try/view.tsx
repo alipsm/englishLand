@@ -8,6 +8,7 @@ export default function Index({
     card: "" as string,
     arrow: "" as string,
     button: "" as string,
+    trying:"" as string
   }, //animations
   tryingToFindTranslateWord = () => {}, // checking correct translation
   nextLanguageCard = () => {}, // get new english
@@ -15,9 +16,11 @@ export default function Index({
     word:"" as string,
     persianMeanings:[] as string[],
     examples:[] as string[]|undefined,
-    trying:4 as number
-  } , // card data {word,persianMeanings,examples}
+    trying:4 as number,
+    finishGame:false as boolean
+  }
 }) {
+
   const [showingExample, setShowingExample] = useState(() => false);
   const inputRef = useRef(null);
 
@@ -29,8 +32,6 @@ export default function Index({
     console.log("inputRef", inputRef);
   }, [inputRef.current]);
 
-
-  console.log('languageCardData :>> ', languageCardData);
   return (
     <div className="flex flex-row-reverse justify-around items-center w-full h-full">
       <div className="robot relative w-2/5 ">
@@ -113,7 +114,7 @@ export default function Index({
           <div className="tringCount">
             <ul>
               {Array.from(Array(4),(e,i)=>{
-                return <li className={`${languageCardData.trying>i?"bg-[#59CE8F]":"bg-[#F96666]"}`}>{e}</li>
+                return <li className={`${languageCardData.trying>i?"bg-[#59CE8F]":"bg-[#F96666]"} animate__animated ${languageCardAnimation.trying} animate__delay-1s`}>{e}</li>
               })
               }
             </ul>
