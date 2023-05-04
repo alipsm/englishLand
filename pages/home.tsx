@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main>
-      <div className="flex flex-row-reverse justify-around items-center w-full h-4/5">
+      <div className="flex flex-row-reverse justify-around items-center w-full h-full">
         <div className="robot relative w-2/5 ">
           <Image
             fill

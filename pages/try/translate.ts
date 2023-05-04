@@ -1,0 +1,5 @@
+export type translatedWordType = {
+  word: string;
+  persianMeanings: string[];
+  examples: string[]|undefined;
+};
