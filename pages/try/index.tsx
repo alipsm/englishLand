@@ -98,10 +98,12 @@ export default function index() {
 
   function tryingToFindTranslateWord(translate: string) {
     var checkingSuccessProcessing = false;
+    debugger
+    if(!languageCardData?.finishGame.end){
 
     // Sensitivity to word length
     const avgUserTranslate = Math.floor(translate.length / 3);
-
+    
     languageCardData?.persianMeanings.forEach((persinaMeaning) => {
 
       if (checkingSuccessProcessing) {
@@ -131,7 +133,13 @@ export default function index() {
       }
     });
     handleTringCount(checkingSuccessProcessing)
-    return checkingSuccessProcessing;
+  }
+  return checkingSuccessProcessing;
+
+  }
+
+  function finishingTrying(winStatus:boolean|undefined) {
+      languageCardData?.trying!=undefined&&setLanguageCardData({...languageCardData,finishGame:{end:true,win:winStatus}})
   }
 
   // init word
@@ -149,6 +157,7 @@ export default function index() {
       tryingToFindTranslateWord={tryingToFindTranslateWord}
       nextLanguageCard={nextLanguageCard}
       languageCardData={languageCardData}
+      finishingTrying={finishingTrying}
     />
   ) : <div className="flex justify-center items-center "><h1 className="">please checking your network connection...</h1></div>;
 }

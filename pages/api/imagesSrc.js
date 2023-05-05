@@ -19,6 +19,9 @@ export const ImageContainer={
     full_screen:{img:'/utils/full_screen.png', alt:"full screen"},
     exit_full_screen:{img:'/utils/exit_full_screen.png', alt:"exit full screen"},
     arrow:{img:'/utils/arrow.png', alt:"arrow"},
+    hidden:{img:'/utils/hidden.png', alt:"hidden"},
+    bookmark:{img:'/utils/bookmark.png', alt:"bookmark"},
+    show_property:{img:'/utils/show_property.png', alt:"visible result"},
 
     //person
     info_person:{img:"/person/info_person.png", alt:"person"},

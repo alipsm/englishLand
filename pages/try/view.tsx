@@ -19,6 +19,7 @@ export default function Index({
     trying: 4 as number,
     finishGame: { end: false as boolean, win: false as boolean },
   },
+  finishingTrying=(winStatus:boolean|undefined)=>{}
 }) {
   const [showingExample, setShowingExample] = useState(() => false);
   const inputRef = useRef(null);
@@ -41,6 +42,12 @@ export default function Index({
     "languageCardData.finishGame.end :>> ",
     languageCardData.finishGame.end
   );
+
+  const getLanguageCardStatusColor={
+    undefined:"animate__fadeIn showingData",
+    true:"animate__fadeIn win",
+    false:"animate__fadeIn los"
+  }
 
   return (
     <div className="flex flex-row-reverse justify-around items-center w-full h-full">
@@ -73,7 +80,7 @@ export default function Index({
       <div className="flex justify-center items-center w-3/5 h-full">
         <form
           id="languageCord"
-          onSubmit={e=>e.preventDefault()}
+          onSubmit={(e) => e.preventDefault()}
           // onSubmit={()=>tryingToFindTranslateWord(
           //   /* @ts-ignore */
           //   inputRef.current && inputRef.current.value
@@ -82,11 +89,40 @@ export default function Index({
           <div
             className={`parentCard animate__animated ${
               languageCardData.finishGame.end
-                ? languageCardData.finishGame.win
-                  ? "animate__fadeIn win"
-                  : "animate__fadeIn los"
+                ? getLanguageCardStatusColor[`${languageCardData.finishGame.win}`]
                 : ""
             } `}>
+            {/* card option */}
+            <div className="options absolute right-0 top-0 ">
+              <ul>
+                <li>
+                  <Image
+                    fill
+                    src={ImageContainer.hidden.img}
+                    alt={ImageContainer.hidden.alt}
+                    className="inset-auto object-cover w-8 body relative"
+                  />
+                </li>
+                <li>
+                  <Image
+                    fill
+                    src={ImageContainer.bookmark.img}
+                    alt={ImageContainer.bookmark.alt}
+                    className="inset-auto object-cover w-8 body relative"
+                  />
+                </li>
+                <li>
+                <Image
+                    fill
+                    src={ImageContainer.show_property.img}
+                    alt={ImageContainer.show_property.alt}
+                    onClick={()=>finishingTrying(undefined)}
+                    className="inset-auto object-cover w-8 body relative"
+                  />
+                </li>
+              </ul>
+            </div>
+
             <div className=" h-[30%]">
               <p className="word">{languageCardData.word}</p>
               <div>
@@ -166,7 +202,7 @@ export default function Index({
             <div
               className={`button-container absolute w-full text-center -bottom-14 left-0 animate__animated ${languageCardAnimation.button} animate__delay-1s`}>
               <button
-              type="submit"
+                type="submit"
                 className="  m-auto "
                 onClick={() => {
                   tryingToFindTranslateWord(

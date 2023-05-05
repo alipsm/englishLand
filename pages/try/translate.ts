@@ -3,5 +3,5 @@ export type translatedWordType = {
   persianMeanings: string[];
   examples: string[]|undefined;
   trying:number,
-  finishGame:{end:boolean,win:boolean}
+  finishGame:{end:boolean,win:boolean|undefined}
 };
