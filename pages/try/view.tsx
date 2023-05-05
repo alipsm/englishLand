@@ -19,7 +19,7 @@ export default function Index({
     trying: 4 as number,
     finishGame: { end: false as boolean, win: false as boolean },
   },
-  finishingTrying=(winStatus:boolean|undefined)=>{}
+  finishingTrying = (winStatus: boolean | undefined) => {},
 }) {
   const [showingExample, setShowingExample] = useState(() => false);
   const inputRef = useRef(null);
@@ -38,16 +38,11 @@ export default function Index({
     console.log("inputRef", inputRef);
   }, [inputRef.current]);
 
-  console.log(
-    "languageCardData.finishGame.end :>> ",
-    languageCardData.finishGame.end
-  );
-
-  const getLanguageCardStatusColor={
-    undefined:"animate__fadeIn showingData",
-    true:"animate__fadeIn win",
-    false:"animate__fadeIn los"
-  }
+  const getLanguageCardStatusColor = {
+    undefined: "animate__fadeIn showingData",
+    true: "animate__fadeIn win",
+    false: "animate__fadeIn los",
+  };
 
   return (
     <div className="flex flex-row-reverse justify-around items-center w-full h-full">
@@ -81,15 +76,13 @@ export default function Index({
         <form
           id="languageCord"
           onSubmit={(e) => e.preventDefault()}
-          // onSubmit={()=>tryingToFindTranslateWord(
-          //   /* @ts-ignore */
-          //   inputRef.current && inputRef.current.value
-          // )}
           className={`animate__animated ${languageCardAnimation.card}`}>
           <div
             className={`parentCard animate__animated ${
               languageCardData.finishGame.end
-                ? getLanguageCardStatusColor[`${languageCardData.finishGame.win}`]
+                ? getLanguageCardStatusColor[
+                    `${languageCardData.finishGame.win}`
+                  ]
                 : ""
             } `}>
             {/* card option */}
@@ -112,11 +105,11 @@ export default function Index({
                   />
                 </li>
                 <li>
-                <Image
+                  <Image
                     fill
                     src={ImageContainer.show_property.img}
                     alt={ImageContainer.show_property.alt}
-                    onClick={()=>finishingTrying(undefined)}
+                    onClick={() => finishingTrying(undefined)}
                     className="inset-auto object-cover w-8 body relative"
                   />
                 </li>
@@ -125,15 +118,34 @@ export default function Index({
 
             <div className=" h-[30%]">
               <p className="word">{languageCardData.word}</p>
-              <div>
+              <div className="flex justify-center items-center">
                 <input
                   type="text"
-                  name="inputTranslate"
+                  name=""
                   id=""
                   placeholder="translate"
                   ref={inputRef}
                 />
-                <label htmlFor="inputTranslate"></label>
+                <div
+                  className={`button-container inline-block text-center animate__animated animate__slideInRight `}>
+                  <button
+                    type="submit"
+                    className=""
+                    onClick={() => {
+                      tryingToFindTranslateWord(
+                        /* @ts-ignore */
+                        inputRef.current && inputRef.current.value
+                      );
+                    }}>
+                    <Image
+                      fill
+                      src={ImageContainer.whiteArrow.img}
+                      alt={ImageContainer.whiteArrow.alt}
+                      onClick={() => finishingTrying(undefined)}
+                      className="inset-auto object-cover relative rotate-180"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
             <div className="h-[50%] overflow-y-auto">
@@ -197,21 +209,6 @@ export default function Index({
                 onClick={() => nextLanguageCard()}
                 className={`h-full  cursor-pointer animate__animated ${languageCardAnimation.arrow}   animate__delay-1s`}
               />
-            </div>
-
-            <div
-              className={`button-container absolute w-full text-center -bottom-14 left-0 animate__animated ${languageCardAnimation.button} animate__delay-1s`}>
-              <button
-                type="submit"
-                className="  m-auto "
-                onClick={() => {
-                  tryingToFindTranslateWord(
-                    /* @ts-ignore */
-                    inputRef.current && inputRef.current.value
-                  );
-                }}>
-                CHECK
-              </button>
             </div>
           </div>
         </form>

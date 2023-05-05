@@ -22,6 +22,8 @@ export const ImageContainer={
     hidden:{img:'/utils/hidden.png', alt:"hidden"},
     bookmark:{img:'/utils/bookmark.png', alt:"bookmark"},
     show_property:{img:'/utils/show_property.png', alt:"visible result"},
+    whiteArrow:{img:'/utils/whiteArrow.svg', alt:"arrow"},
+
 
     //person
     info_person:{img:"/person/info_person.png", alt:"person"},
