@@ -143,7 +143,13 @@ input{
     color: $black;
   }
   h2{
-    padding-bottom: 2em;
+    font-size:2em;
+    padding-bottom: 1em;
+    color: $black;
+  }
+  h3{
+    font-size:1em;
+    padding-bottom: 1em;
     color: $black;
   }
   p{

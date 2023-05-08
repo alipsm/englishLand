@@ -43,7 +43,7 @@ export default function Home() {
         </div>
         <div className="info_parent w-3/5 h-full ">
           <h1>Teaching English is easier than fishing</h1>
-          <h2>Do you still remember fishing?</h2>
+          <h3>Do you still remember fishing?</h3>
           <p>in this site your trying english with a basic machine</p>
           <p>
             for progress better you try every day but remember this machine just

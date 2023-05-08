@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+import { ImageContainer } from "./api/imagesSrc";
 // import { ImageContainer } from "../assets/img";
 
 export default function Info() {
@@ -18,13 +20,19 @@ export default function Info() {
           src={ImageContainer.robot_hello_forward_body.img}
           alt={ImageContainer.robot_hello_forward_body.alt}
         /> */}
-        <div className=" rounded-3xl rounded-t-full h-[40vh] relative  w-4/5 ">
+        {/* <div className=" rounded-3xl rounded-t-full  relative  w-2/5 "> */}
+          <Image
+            fill
+            src={ImageContainer.info_person.img}
+            alt={ImageContainer.info_person.alt}
+            className="inset-auto object-cover h-auto w-3/5 relative bottom-0 m-auto"
+          />
           {/* <img
             src={ImageContainer.info_person.img}
             alt={ImageContainer.info_person.alt}
             className=" absolute bottom-0 m-auto"
           /> */}
-        </div>
+        {/* </div> */}
       </div>
       <div className="info_parent w-3/5 h-full ">
         <h2>
