@@ -20,6 +20,7 @@ export default function Index({
     finishGame: { end: false as boolean, win: false as boolean },
   },
   finishingTrying = (winStatus: boolean | undefined) => {},
+  addingToTheBookMark=(word:string)=>{}
 }) {
   const [showingExample, setShowingExample] = useState(() => false);
   const inputRef = useRef(null);
@@ -88,20 +89,20 @@ export default function Index({
             {/* card option */}
             <div className="options absolute right-0 top-0 ">
               <ul>
-                <li>
+                <li onClick={e=>e.currentTarget.classList.toggle("selectedOption")} className="cursor-auto">
                   <Image
                     fill
                     src={ImageContainer.hidden.img}
                     alt={ImageContainer.hidden.alt}
-                    className="inset-auto object-cover w-8 body relative"
+                    className="inset-auto object-cover w-8 body relative blur-[2px]"
                   />
                 </li>
-                <li>
+                <li onClick={()=>addingToTheBookMark(languageCardData.word)} className=" cursor-auto">
                   <Image
                     fill
                     src={ImageContainer.bookmark.img}
                     alt={ImageContainer.bookmark.alt}
-                    className="inset-auto object-cover w-8 body relative"
+                    className="inset-auto object-cover w-8 body relative blur-[2px]"
                   />
                 </li>
                 <li>

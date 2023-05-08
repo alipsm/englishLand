@@ -56,7 +56,7 @@ export default function Home() {
             <div></div>
             <div></div>
             <Link href={"/try"}>
-              <button className="bn5">Lets Start</button>
+              <button className="bn5 mt-2">Lets Start</button>
             </Link>
           </div>
         </div>
