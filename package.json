@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "npm run build && next export -o _static"
   },
   "dependencies": {
     "@types/node": "18.16.1",
@@ -17,6 +18,7 @@
     "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "google-translate-api": "^2.3.0",
     "next": "13.3.1",
     "postcss": "8.4.23",
     "react": "18.2.0",

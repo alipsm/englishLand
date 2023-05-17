@@ -1,33 +1,20 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { NavLink } from "react-router-dom";
-// import { ImageContainer } from "../assets/img";
 import { ImageContainer } from "@/pages/api/imagesSrc";
-// import NavLink from "../elements/NavLink";
 // @ts-ignore
 import { SelectTextBase } from "../modules/language/localizationd/languageBaseType.ts";
 import NavLink from "../elements/NavLink";
-// import {LanguageBase} from '../modules/language/localizationd/languageBaseType.ts'
 const initFullScreenBtn = {
   img: ImageContainer.full_screen.img,
   alt: ImageContainer.full_screen.alt,
 };
-// import i18n from './i18n';
-// console.log('LanguageBase :>> ', );
 export default function NavBar() {
-  // const { t, i18n } = useTranslation('navBarItems');
-  // const { t, i18n } = useTranslation();
-  // const { t } = useTranslation('resouces', { keyPrefix: 'navBarItems' });
-
   const isActive = ({ isActive }: any) => `${isActive ? "active" : ""}`;
   const [toggleFullScreenBtn, setToggleFullScreenBtn] =
     useState(initFullScreenBtn);
-
   function fullscreen() {
     var isInFullScreen: boolean =
       (document.fullscreenElement && document.fullscreenElement !== null) ||
       // @ts-ignore
-
       (document.webkitFullscreenElement &&
         // @ts-ignore
         document.webkitFullscreenElement !== null) ||
@@ -89,30 +76,34 @@ export default function NavBar() {
       </div>
       <div className="sections">
         <ul className="flex justify-between">
-          <NavLink className={isActive} href="/home">
+          <NavLink
+            className={isActive}
+            href="/englishLand/"
+            exact="/englishLand/">
             home
           </NavLink>
-          <NavLink className={isActive} href={"/try"}>
+          <NavLink className={isActive} href={"/englishLand/try"}>
             Try
           </NavLink>
-          <NavLink className={isActive} href={"/words"}>
+          <NavLink className={isActive} href={"/englishLand/words"}>
             Words
           </NavLink>
-          <NavLink className={isActive} href={"/info"}>
+          <NavLink className={isActive} href={"/englishLand/info"}>
             Info
           </NavLink>
         </ul>
       </div>
       <div className="flex justify-between items-center">
-        <div className="btn-style mr-4">
-          dark
+        {/* <div className="btn-style mr-4">dark</div> */}
+        <div onClick={() => fullscreen()} className=" btn-style ">
+          <img
+            // fill
+            src={toggleFullScreenBtn.img}
+            alt={toggleFullScreenBtn.alt}
+            className="inset-auto relative h-auto w-full"
+          />
         </div>
-      <div
-        onClick={() => fullscreen()}
-        className=" btn-style ">
-        <img src={toggleFullScreenBtn.img} alt={toggleFullScreenBtn.alt} />
       </div>
-          </div>
     </div>
   );
 }
